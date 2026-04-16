@@ -4,9 +4,12 @@ package com.project.fitness.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
@@ -18,15 +21,15 @@ import java.util.Map;
 @Data // no need to make geter and seter if you use this anotasan
 @NoArgsConstructor // no prament connstructor user
 @AllArgsConstructor // provide pramiter construcor this notacan
-
+@Builder
 
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private String Id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_activity_user"))
+    @JoinColumn(name = "user_i/d", nullable = false, foreignKey = @ForeignKey(name = "fk_activity_user"))
     @JsonIgnore
     private User user;
 
@@ -40,7 +43,10 @@ public class Activity {
     private Integer duration;
     private Integer caloriesBurned;
     private LocalDateTime startTime;
+
+    @CreationTimestamp
     private LocalDateTime createDAt;
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "activity" , cascade = CascadeType.ALL, orphanRemoval = true)
