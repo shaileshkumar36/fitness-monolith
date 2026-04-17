@@ -29,7 +29,7 @@ public class Activity {
     private String Id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_i/d", nullable = false, foreignKey = @ForeignKey(name = "fk_activity_user"))
+    @JoinColumn(name = "user_Id", nullable = false, foreignKey = @ForeignKey(name = "fk_activity_user"))
     @JsonIgnore
     private User user;
 

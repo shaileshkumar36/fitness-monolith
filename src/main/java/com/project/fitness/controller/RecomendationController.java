@@ -5,13 +5,12 @@ import com.project.fitness.model.Recommendation;
 import com.project.fitness.service.RecommendationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/recommendattion")
+@RequestMapping("/api/recommendation")
 @AllArgsConstructor
 public class RecomendationController {
 
@@ -22,6 +21,14 @@ public class RecomendationController {
             @RequestBody RecommendationRequest request
     ){
         Recommendation recommendation = recommendationService.generateRecommendation(request);
+        return ResponseEntity.ok(recommendation);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Recommendation>> getUserRecommendation(
+            @PathVariable String userId
+    ){
+        List<Recommendation> recommendation = recommendationService.getUserRecommendation(userId);
         return ResponseEntity.ok(recommendation);
     }
 }

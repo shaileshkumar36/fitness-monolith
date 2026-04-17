@@ -19,7 +19,6 @@ public class ActivityController {
 
     @PostMapping
     public ResponseEntity<ActivityResponse> treackResponse(@RequestBody ActivityRequest request){
-
         return ResponseEntity.ok(activityService.trackActivity(request));
     }
 
