@@ -33,7 +33,6 @@ public class ActivityService {
         Activity savedActivity = activityRepository.save(activity);
         return mapToResponse(savedActivity);
     }
-
     private ActivityResponse mapToResponse(Activity activity) {
         ActivityResponse response = new ActivityResponse();
         response.setId(activity.getId());
